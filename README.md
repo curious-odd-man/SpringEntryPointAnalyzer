@@ -8,13 +8,15 @@ There are various annotations and interfaces that will trigger code execution wi
 
 This simple app scans all source files and attempts to find them all and list grouped result.
 
+I'm working on transforming it into a maven plugin. 
+
 ## What exactly is looked for?
 
 The constants are defined here: [SpringEntryPointAnalyzer.java](src/main/java/com/github/curiousoddman/tools/sping/analyzer/SpringEntryPointAnalyzer.java)
 
 ## How to run:
 
-Just run a main method providing a path to a src directory you want to scan.
+ #### FIXME:
 
 ## Example output:
 
