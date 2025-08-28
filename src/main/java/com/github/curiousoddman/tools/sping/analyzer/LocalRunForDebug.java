@@ -20,11 +20,11 @@ import java.util.Set;
 public class LocalRunForDebug {
     public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException, IOException, MojoExecutionException, MojoFailureException {
         List<String> strings = Files.readAllLines(Path.of("<<< FIXME: Path to file with list of dependencies used in a project >>>"));  // FIXME
-        File root = new File("<<< sources directory path >>> "); // FIXME
+        File root = new File("<<< sources directory path >>> \\src\\main\\java"); // FIXME
 
-        SpringEntryPointAnalyzer springEntryPointAnalyzer = new SpringEntryPointAnalyzer();
+        SpringEntryPointAnalyzerMojo springEntryPointAnalyzerMojo = new SpringEntryPointAnalyzerMojo();
         SystemStreamLog log = new SystemStreamLog();
-        springEntryPointAnalyzer.setLog(log);
+        springEntryPointAnalyzerMojo.setLog(log);
         MyMavenProject mp = new MyMavenProject();
         Set artifacts = new HashSet();
         int i = 0;
@@ -36,11 +36,11 @@ public class LocalRunForDebug {
         }
         mp.setArtifacts(artifacts);
         mp.setSrc(root);
-        Field projectField = SpringEntryPointAnalyzer.class.getDeclaredField("project");
+        Field projectField = SpringEntryPointAnalyzerMojo.class.getDeclaredField("project");
         projectField.setAccessible(true);
-        projectField.set(springEntryPointAnalyzer, mp);
+        projectField.set(springEntryPointAnalyzerMojo, mp);
 
-        springEntryPointAnalyzer.execute();
+        springEntryPointAnalyzerMojo.execute();
     }
 
     private static class MyMavenProject extends MavenProject {
